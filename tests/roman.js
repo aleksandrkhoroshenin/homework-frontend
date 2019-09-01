@@ -37,4 +37,16 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman('1990'), 'MCMXC');
 		assert.strictEqual(roman('2017'), 'MMXVII');
 	});
+
+	QUnit.test('roman определяет, что римское число валидно (мои тесты)', function (assert) {
+		assert.strictEqual(roman('privet'), 'error');
+		assert.strictEqual(roman('MCMXCQQQ'), 'error');
+		assert.strictEqual(roman('mmzxvii'), 'error');
+		assert.strictEqual(roman('qwreqwerqwrqwerqwerqwerqwerqwerqwerqwerwqerqwerwqr'), 'error');
+		assert.strictEqual(roman(''), 'Not valid number');
+		assert.strictEqual(roman('-71'), 'Not valid number');
+		assert.strictEqual(roman(-80), 'Not valid number');
+		assert.strictEqual(roman(10), 'X');
+		assert.strictEqual(roman('x'), 10);
+	});
 });
