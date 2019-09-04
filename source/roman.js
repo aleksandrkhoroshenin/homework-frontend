@@ -15,36 +15,21 @@ const NOT_VALID_NUMBER = 'Not valid number', ERROR = 'error';
 /*
 * мапа для соответствия римских цифр десятичным
 * */
-// const romanMap = {
-//     M:1000,
-//     CM:900,
-//     D:500,
-//     CD:400,
-//     C:100,
-//     XC:90,
-//     L:50,
-//     XL:40,
-//     X:10,
-//     IX:9,
-//     V:5,
-//     IV:4,
-//     I:1
-// };
-
-let romanMap = {};
-romanMap.M = 1000;
-romanMap.CM = 900;
-romanMap.D = 500;
-romanMap.CD = 400;
-romanMap.C = 100;
-romanMap.XC = 90;
-romanMap.L = 50;
-romanMap.XL = 40;
-romanMap.X = 10;
-romanMap.IX = 9;
-romanMap.V = 5;
-romanMap.IV = 4;
-romanMap.I = 1;
+const romanMap = {
+    M:1000,
+    CM:900,
+    D:500,
+    CD:400,
+    C:100,
+    XC:90,
+    L:50,
+    XL:40,
+    X:10,
+    IX:9,
+    V:5,
+    IV:4,
+    I:1
+};
 
 /*
 * Функция по переводу из десятичной в римские
@@ -53,7 +38,7 @@ romanMap.I = 1;
 * */
 
 const decToRoman = dec => {
-    if (dec <= 0) {
+    if (dec < 0) {
         return NOT_VALID_NUMBER;
     }
     let roman = '';
@@ -89,7 +74,8 @@ const romanToDec = romanNumbers => {
 
 const roman = numbers => {
     let stringNumber = numbers.toString();
-    stringNumber = stringNumber.replace(/[^a-zA-Z0-9]/g, '')
+    stringNumber = stringNumber
+        .replace(/[^a-zA-Z0-9]/g, '')
         .toUpperCase()
         .split('');
     const numb = Number(numbers);
