@@ -73,14 +73,13 @@ const romanToDec = romanNumbers => {
 * */
 
 const roman = numbers => {
-    let stringNumber = numbers.toString();
-    stringNumber = stringNumber
-        .replace(/[^a-zA-Z0-9]/g, '')
-        .toUpperCase()
-        .split('');
-    const numb = Number(numbers);
     if (numbers.length === 0) {
         return NOT_VALID_NUMBER;
     }
-    return !isNaN(numb) ? decToRoman(numb) : romanToDec(stringNumber);
+    let arrayNumber = numbers
+        .toString()
+        .replace(/[^a-zA-Z0-9]/g, '')
+        .toUpperCase()
+        .split('');
+    return !isNaN(Number(numbers)) ? decToRoman(Number(numbers)) : romanToDec(arrayNumber);
 };
