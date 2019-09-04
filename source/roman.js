@@ -1,14 +1,64 @@
 'use strict';
 
+/**
+ * Функции осуществляют перевод из римских цифр в десятичные и обратно
+ *
+ * @author
+ * Aleksandr Khoroshenin
+ */
+
+/**
+ * Наименование ошибок
+ * */
 const NOT_VALID_NUMBER = 'Not valid number', ERROR = 'error';
-const romanMap = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1};
+
+/*
+* мапа для соответствия римских цифр десятичным
+* */
+// const romanMap = {
+//     M:1000,
+//     CM:900,
+//     D:500,
+//     CD:400,
+//     C:100,
+//     XC:90,
+//     L:50,
+//     XL:40,
+//     X:10,
+//     IX:9,
+//     V:5,
+//     IV:4,
+//     I:1
+// };
+
+let romanMap = {};
+romanMap.M = 1000;
+romanMap.CM = 900;
+romanMap.D = 500;
+romanMap.CD = 400;
+romanMap.C = 100;
+romanMap.XC = 90;
+romanMap.L = 50;
+romanMap.XL = 40;
+romanMap.X = 10;
+romanMap.IX = 9;
+romanMap.V = 5;
+romanMap.IV = 4;
+romanMap.I = 1;
+
+/*
+* Функция по переводу из десятичной в римские
+* @params {dec} - входной параметр
+* @return {roman} - Строка с римским числом
+* */
 
 const decToRoman = dec => {
-    let roman = '';
-    if (dec <= 0)
+    if (dec <= 0) {
         return NOT_VALID_NUMBER;
+    }
+    let roman = '';
     for (let i in romanMap ) {
-        while ( dec >= romanMap[i] ) {
+        while ( !(dec < romanMap[i]) ) {
             roman += i;
             dec -= romanMap[i];
         }
@@ -16,19 +66,32 @@ const decToRoman = dec => {
     return roman;
 };
 
+/*
+* Функция по переводу из римских в десятичные
+* @params {romanNumbers} - входной параметр
+* @return {roman} - Строка с десятичным числом
+* */
+
 const romanToDec = romanNumbers => {
-    let romArray = romanNumbers.toUpperCase().split(''),
-        num = 0, val = 0;
-    while (romArray.length) {
-        val = romanMap[romArray.shift()];
-        num += val * (val < romanMap[romArray[0]] ? -1:1);
-    }
+    let num = 0, val = 0;
+    romanNumbers.forEach( (item, i, arr) => {
+        val = romanMap[item];
+        num += val * (val < romanMap[romanNumbers[i < arr.length ? i+1 : i]] ? -1:1);
+    });
     return !isNaN(num) ? num : ERROR;
 };
 
+/*
+* Точка входа программы
+* @params {numbers} - входной параметр
+* @return - Строка с десятичным или римским числом, в зависимости от входных данных
+* */
+
 const roman = numbers => {
     let stringNumber = numbers.toString();
-    stringNumber = stringNumber.replace(/[^a-zA-Z0-9]/g, '');
+    stringNumber = stringNumber.replace(/[^a-zA-Z0-9]/g, '')
+        .toUpperCase()
+        .split('');
     const numb = Number(numbers);
     if (numbers.length === 0) {
         return NOT_VALID_NUMBER;
