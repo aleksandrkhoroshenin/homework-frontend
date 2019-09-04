@@ -61,7 +61,7 @@ const romanToDec = romanNumbers => {
     let num = 0, val = 0;
     romanNumbers.forEach( (item, i, arr) => {
         val = romanMap[item];
-        num += val * (val < romanMap[romanNumbers[i < arr.length ? i+1 : i]] ? -1:1);
+        num += val * (val < romanMap[romanNumbers[i < arr.length ? i + 1 : i]] ? -1 : 1);
     });
     return !isNaN(num) ? num : ERROR;
 };
