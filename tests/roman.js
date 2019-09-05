@@ -48,5 +48,6 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman(-80), 'Not valid number');
 		assert.strictEqual(roman(10), 'X');
 		assert.strictEqual(roman('x'), 10);
+		assert.strictEqual(roman({}), 'error');
 	});
 });
