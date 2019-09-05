@@ -76,6 +76,9 @@ const roman = numbers => {
     if (numbers.length === 0) {
         return NOT_VALID_NUMBER;
     }
+    if (typeof numbers === 'boolean') {
+        return ERROR;
+    }
     let arrayNumber = numbers
         .toString()
         .replace(/[^a-zA-Z0-9]/g, '')
