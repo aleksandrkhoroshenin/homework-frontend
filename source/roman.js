@@ -59,7 +59,6 @@ const decToRoman = dec => {
 
 const romanToDec = romanNumbers => {
    let num = 0, val = 0;
-   console.log(romanNumbers, romanNumbers.length);
     if (romanNumbers.length < 2) {
         return romanMap[romanNumbers[0]];
     }
