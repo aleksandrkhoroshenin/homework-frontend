@@ -58,11 +58,15 @@ const decToRoman = dec => {
 * */
 
 const romanToDec = romanNumbers => {
-    let num = 0, val = 0;
-    romanNumbers.forEach( (item, i, arr) => {
+   let num = 0, val = 0;
+   console.log(romanNumbers, romanNumbers.length);
+    if (romanNumbers.length < 2) {
+        return romanMap[romanNumbers[0]];
+    }
+   romanNumbers.reduce( (prev, item, i, arr) => {
         val = romanMap[item];
-        num += val * (val < romanMap[romanNumbers[i < arr.length ? i + 1 : i]] ? -1 : 1);
-    });
+        num += val * (val < romanMap[romanNumbers[i < arr.length ? i+1 : i]] ? -1:1);
+    }, romanNumbers[0]);
     return !isNaN(num) ? num : ERROR;
 };
 
