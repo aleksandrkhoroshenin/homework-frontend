@@ -61,12 +61,11 @@ const romanToDec = romanNumbers => {
     if (romanNumbers.length < 2) {
         return romanMap[romanNumbers[0]];
     }
-    let decVals = romanNumbers.map( (item, i, arr) => {
+    const num = romanNumbers.map( (item, i, arr) => {
         let val = romanMap[item];
         const curOrNextElem = i < arr.length ? i+1 : i;
         return val * (val < romanMap[romanNumbers[curOrNextElem]] ? -1:1);
-    });
-    let num = decVals.reduce( (prev, item) => {
+    }).reduce( (prev, item) => {
         return prev + item;
     });
     return !isNaN(num) ? num : ERROR;
