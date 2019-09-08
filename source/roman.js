@@ -79,10 +79,11 @@ const roman = numbers => {
     if (numbers.length === 0) {
         return NOT_VALID_NUMBER;
     }
-    if (typeof numbers === 'boolean') {
+
+    if ((typeof numbers !== 'number' && typeof numbers !== 'string')) {
         return ERROR;
     }
-    let arrayNumber = numbers
+    const arrayNumber = numbers
         .toString()
         .replace(/[^a-zA-Z0-9]/g, '')
         .toUpperCase()
